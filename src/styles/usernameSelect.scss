@@ -1,0 +1,55 @@
+@import "./colors.scss";
+
+.username-select-wrap {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+    border-radius: 28px;
+    width: 100%;
+    height: 55px;
+    background-color: $form-color;
+  }
+}
+
+.username-select {
+  width: 380px;
+  text-align: center;
+}
+
+.username-select-title {
+  font-size: 25px;
+  margin: 40px 0;
+  color: $title-color;
+}
+
+.username-select-input {
+  width: 70%;
+  font-size: 14px;
+  border: none;
+  background-color: $form-color;
+}
+
+.username-select-input:focus {
+  outline: none;
+}
+
+.username-select-submit {
+  border-radius: 28px;
+  border: none;
+  cursor: pointer;
+  padding: 6px 18px;
+  background-color: $username-background-color;
+}
+
+.username-select-image {
+  width: 24px;
+  height: 24px;
+}

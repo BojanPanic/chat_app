@@ -1,0 +1,17 @@
+@import "./colors.scss";
+
+.app-wrap {
+  width: 100vw;
+  height: 100vh;
+  background: #404eed;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+body,
+h1 {
+  margin: 0;
+  padding: 0;
+}
