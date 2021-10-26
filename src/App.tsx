@@ -1,11 +1,17 @@
 import { useState } from "react";
-import { ChatBox } from "./Components/ChatBox";
-import { UsernameSelect } from "./Components/UsernameSelect";
+import { ChatBox } from "components/ChatBox";
+import { UsernameSelect } from "components/UsernameSelect";
+import "fonts/fonts.scss";
+import "styles/app.scss";
 
 function App() {
   const [username, setUsername] = useState<string>("");
 
-  return <div>{username ? <ChatBox /> : <UsernameSelect />}</div>;
+  return (
+    <div className={"app-wrap"}>
+      {username ? <ChatBox /> : <UsernameSelect setUsername={setUsername} />}
+    </div>
+  );
 }
 
 export default App;
