@@ -1,3 +1,4 @@
+import "styles/message.scss";
 interface IProps {
   text: string;
   name?: string;
@@ -7,10 +8,12 @@ interface IProps {
 
 export const Message = (props: IProps) => {
   return (
-    <div style={{ background: props.color }}>
-      {props.name ? <div>{props.name}</div> : null}
-      <div>{props.text}</div>
-      <div>{props.date}</div>
+    <div style={{ background: props.color }} className="message-wrap">
+      {props.name ? (
+        <div className="message-light-text">{props.name}</div>
+      ) : null}
+      <div className="message-text">{props.text}</div>
+      <div className="message-light-text">{props.date}</div>
     </div>
   );
 };

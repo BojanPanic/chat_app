@@ -1,0 +1,18 @@
+@import "./colors.scss";
+
+.message-wrap {
+  display: inline-block;
+  padding: 15px;
+  max-width: 350px;
+  border-radius: 5px;
+  border: 1px solid $message-border-color;
+}
+
+.message-light-text {
+  font-size: 14px;
+  color: $message-light-text-color;
+}
+
+.message-text {
+  padding: 5px 0;
+}
