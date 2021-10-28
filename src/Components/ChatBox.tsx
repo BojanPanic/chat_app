@@ -21,26 +21,33 @@ export const ChatBox = (props: IProps) => {
     messageAuthor.toLowerCase() === username.toLowerCase();
 
   const fetchMessages = async () => {
-    const data: any = await axios({
-      method: "GET",
-      url: `https://chatty.kubernetes.doodle-test.com/api/chatty/v1.0/?since=${timestampYesterday}&token=${process.env.REACT_APP_API_KEY}`,
-    });
-    setMessages(data.data);
+    try {
+      const data: any = await axios({
+        method: "GET",
+        url: `https://chatty.kubernetes.doodle-test.com/api/chatty/v1.0/?since=${timestampYesterday}&token=${process.env.REACT_APP_API_KEY}`,
+      });
+      setMessages(data.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const sendMessage = async (message: string) => {
-    const data: any = await axios({
-      method: "POST",
-      url: `https://chatty.kubernetes.doodle-test.com/api/chatty/v1.0`,
-      data: { message, author: props.username },
-      headers: {
-        token: process.env.REACT_APP_API_KEY
-          ? process.env.REACT_APP_API_KEY
-          : "",
-      },
-    });
-
-    setMessages([...messages, data.data]);
+    try {
+      const data: any = await axios({
+        method: "POST",
+        url: `https://chatty.kubernetes.doodle-test.com/api/chatty/v1.0`,
+        data: { message, author: props.username },
+        headers: {
+          token: process.env.REACT_APP_API_KEY
+            ? process.env.REACT_APP_API_KEY
+            : "",
+        },
+      });
+      setMessages([...messages, data.data]);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -57,35 +64,36 @@ export const ChatBox = (props: IProps) => {
     <div className="chatbox-wrap">
       <div className="chatbox">
         <div className="chatbox-messages">
-          {messages.length &&
-            messages.map((item: IMessage) => {
-              return (
-                <div
-                  key={item._id}
-                  className={
-                    isAuthorsMessage(item.author, props.username)
-                      ? "author-message"
-                      : ""
-                  }
-                >
-                  <Message
-                    text={item.message}
-                    /* *TODO change to css class toggle  */
-                    color={
-                      item.author.toLowerCase() === props.username.toLowerCase()
-                        ? "#fcf6c3"
-                        : "#fff"
-                    }
-                    name={
+          {messages.length
+            ? messages.map((item: IMessage) => {
+                return (
+                  <div
+                    key={item._id}
+                    className={
                       isAuthorsMessage(item.author, props.username)
-                        ? ""
-                        : item.author
+                        ? "author-message"
+                        : ""
                     }
-                    date={formatDate(item.timestamp)}
-                  />
-                </div>
-              );
-            })}
+                  >
+                    <Message
+                      text={item.message}
+                      color={
+                        item.author.toLowerCase() ===
+                        props.username.toLowerCase()
+                          ? "#fcf6c3"
+                          : "#fff"
+                      }
+                      name={
+                        isAuthorsMessage(item.author, props.username)
+                          ? ""
+                          : item.author
+                      }
+                      date={formatDate(item.timestamp)}
+                    />
+                  </div>
+                );
+              })
+            : null}
         </div>
         <div ref={chatboxRef}></div>
       </div>
