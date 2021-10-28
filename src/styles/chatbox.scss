@@ -1,13 +1,15 @@
-@import "./colors.scss";
+@import "./ui.scss";
 
 .chatbox-wrap {
   background: url("../assets/body_bg.png");
   background-size: contain;
+  min-height: 100vh;
 }
 
 .chatbox {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: $chatbox-width;
+  margin: 0 auto $message-form-height auto;
+  padding-bottom: 16px;
 }
 
 .author-message {

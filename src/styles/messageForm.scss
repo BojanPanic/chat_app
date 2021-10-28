@@ -1,0 +1,46 @@
+@import "./ui.scss";
+
+$message-submit-width: 70px;
+$message-submit-margin: 10px;
+
+.message-form-wrap {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  height: $message-form-height;
+  text-align: center;
+  width: 100%;
+  justify-content: center;
+  background-color: $message-form-color;
+}
+
+.message-form {
+  width: $chatbox-width;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  form {
+    width: 100%;
+  }
+}
+
+.message-input,
+.message-submit {
+  padding: 10px 15px;
+  border-radius: 3px;
+}
+
+.message-input {
+  width: calc(90% - 70px - 10px);
+  outline: none;
+  border: 2px solid $message-form-input-border;
+}
+
+.message-submit {
+  width: $message-submit-width;
+  background: $message-form-submit-color;
+  color: $message-background-color;
+  border: 2px solid $message-form-submit-color;
+  margin-left: $message-submit-margin;
+}
