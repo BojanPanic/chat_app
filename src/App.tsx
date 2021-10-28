@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ChatBox } from "components/ChatBox";
-import { UsernameSelect } from "components/UsernameSelect";
+import { ChatBox } from "Components/ChatBox";
+import { UsernameSelect } from "Components/UsernameSelect";
 import "fonts/fonts.scss";
 import "styles/app.scss";
 
