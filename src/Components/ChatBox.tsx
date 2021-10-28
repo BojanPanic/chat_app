@@ -35,7 +35,7 @@ export const ChatBox = (props: IProps) => {
       },
     });
 
-    setMessages(data);
+    //setMessages(data);
   };
 
   useEffect(() => {
