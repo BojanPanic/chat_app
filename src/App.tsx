@@ -9,7 +9,11 @@ function App() {
 
   return (
     <div className={"app-wrap"}>
-      {username ? <ChatBox /> : <UsernameSelect setUsername={setUsername} />}
+      {username ? (
+        <ChatBox username={username} />
+      ) : (
+        <UsernameSelect setUsername={setUsername} />
+      )}
     </div>
   );
 }
