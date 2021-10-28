@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { IMessage } from "types/types";
 import { Message } from "./Message";
 import "styles/chatbox.scss";
+import { MessageForm } from "./MessageForm";
 
 interface IProps {
   username: string;
@@ -23,11 +24,11 @@ export const ChatBox = (props: IProps) => {
     setMessages(data.data);
   };
 
-  const sendMessage = async (message: IMessage) => {
+  const sendMessage = async (message: string) => {
     const data: any = await axios({
       method: "POST",
       url: `https://chatty.kubernetes.doodle-test.com/api/chatty/v1.0`,
-      data: message,
+      data: { message },
       headers: {
         token: process.env.REACT_APP_API_KEY
           ? process.env.REACT_APP_API_KEY
@@ -45,31 +46,34 @@ export const ChatBox = (props: IProps) => {
   return (
     <div className="chatbox-wrap">
       <div className="chatbox">
-        {messages.length &&
-          messages.map((item: IMessage) => {
-            return (
-              <div
-                key={item._id}
-                className={
-                  isAuthorsMessage(item.author, props.username)
-                    ? "author-message"
-                    : ""
-                }
-              >
-                <Message
-                  text={item.message}
-                  /* *TODO change to css class toggle  */
-                  color={
-                    item.author.toLowerCase() === props.username.toLowerCase()
-                      ? "#fcf6c3"
-                      : "#fff"
+        <div className="chatbox-messages">
+          {messages.length &&
+            messages.map((item: IMessage) => {
+              return (
+                <div
+                  key={item._id}
+                  className={
+                    isAuthorsMessage(item.author, props.username)
+                      ? "author-message"
+                      : ""
                   }
-                  name={item.author}
-                  date={formatDate(item.timestamp)}
-                />
-              </div>
-            );
-          })}
+                >
+                  <Message
+                    text={item.message}
+                    /* *TODO change to css class toggle  */
+                    color={
+                      item.author.toLowerCase() === props.username.toLowerCase()
+                        ? "#fcf6c3"
+                        : "#fff"
+                    }
+                    name={item.author}
+                    date={formatDate(item.timestamp)}
+                  />
+                </div>
+              );
+            })}
+        </div>
+        <MessageForm />
       </div>
     </div>
   );
