@@ -1,0 +1,20 @@
+@import "./colors.scss";
+
+.chatbox-wrap {
+  background: url("../assets/body_bg.png");
+  background-size: contain;
+}
+
+.chatbox {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.author-message {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.author-message-color {
+  background-color: $message-background-color-author;
+}
