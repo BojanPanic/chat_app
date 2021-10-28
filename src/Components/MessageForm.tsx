@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "styles/messageForm.scss";
 
 interface IProps {
   sendMessage: (message: string) => void;

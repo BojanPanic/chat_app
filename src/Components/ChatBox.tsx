@@ -80,8 +80,8 @@ export const ChatBox = (props: IProps) => {
               );
             })}
         </div>
-        <MessageForm sendMessage={sendMessage} />
       </div>
+      <MessageForm sendMessage={sendMessage} />
     </div>
   );
 };
