@@ -17,3 +17,7 @@ export const formatDate = (timestamp: number | string) => {
 
   return formatedDate;
 };
+
+export const scrollTo = (ref: React.RefObject<HTMLElement>) => {
+  ref.current?.scrollIntoView({ behavior: "smooth" });
+};

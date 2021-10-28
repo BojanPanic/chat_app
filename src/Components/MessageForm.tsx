@@ -14,6 +14,7 @@ export const MessageForm = (props: IProps) => {
 
   const handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
+    setMessage("");
     props.sendMessage(message);
   };
 

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { formatDate } from "helpers/helper";
-import { useEffect, useState } from "react";
+import { formatDate, scrollTo } from "helpers/helper";
+import { useEffect, useRef, useState } from "react";
 import { IMessage } from "types/types";
 import { Message } from "./Message";
 import "styles/chatbox.scss";
@@ -14,6 +14,7 @@ interface IProps {
 const timestampYesterday: number = new Date().valueOf() - 3600 * 1000 * 24;
 
 export const ChatBox = (props: IProps) => {
+  const chatboxRef = useRef(null);
   const [messages, setMessages] = useState<IMessage[]>([]);
 
   const isAuthorsMessage = (messageAuthor: string, username: string): boolean =>
@@ -45,6 +46,12 @@ export const ChatBox = (props: IProps) => {
   useEffect(() => {
     fetchMessages();
   }, []);
+
+  useEffect(() => {
+    if (messages.length) {
+      scrollTo(chatboxRef);
+    }
+  }, [messages]);
 
   return (
     <div className="chatbox-wrap">
@@ -80,6 +87,7 @@ export const ChatBox = (props: IProps) => {
               );
             })}
         </div>
+        <div ref={chatboxRef}></div>
       </div>
       <MessageForm sendMessage={sendMessage} />
     </div>
