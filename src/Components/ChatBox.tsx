@@ -10,6 +10,9 @@ interface IProps {
   username: string;
 }
 
+//Timestamp of current date - 1 day
+const timestampYesterday: number = new Date().valueOf() - 3600 * 1000 * 24;
+
 export const ChatBox = (props: IProps) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
 
@@ -19,7 +22,7 @@ export const ChatBox = (props: IProps) => {
   const fetchMessages = async () => {
     const data: any = await axios({
       method: "GET",
-      url: `https://chatty.kubernetes.doodle-test.com/api/chatty/v1.0/?&limit=10&token=${process.env.REACT_APP_API_KEY}`,
+      url: `https://chatty.kubernetes.doodle-test.com/api/chatty/v1.0/?since=${timestampYesterday}&token=${process.env.REACT_APP_API_KEY}`,
     });
     setMessages(data.data);
   };
@@ -28,7 +31,7 @@ export const ChatBox = (props: IProps) => {
     const data: any = await axios({
       method: "POST",
       url: `https://chatty.kubernetes.doodle-test.com/api/chatty/v1.0`,
-      data: { message },
+      data: { message, author: props.username },
       headers: {
         token: process.env.REACT_APP_API_KEY
           ? process.env.REACT_APP_API_KEY
@@ -36,7 +39,7 @@ export const ChatBox = (props: IProps) => {
       },
     });
 
-    //setMessages(data);
+    setMessages([...messages, data.data]);
   };
 
   useEffect(() => {
@@ -66,14 +69,18 @@ export const ChatBox = (props: IProps) => {
                         ? "#fcf6c3"
                         : "#fff"
                     }
-                    name={item.author}
+                    name={
+                      isAuthorsMessage(item.author, props.username)
+                        ? ""
+                        : item.author
+                    }
                     date={formatDate(item.timestamp)}
                   />
                 </div>
               );
             })}
         </div>
-        <MessageForm />
+        <MessageForm sendMessage={sendMessage} />
       </div>
     </div>
   );

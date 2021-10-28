@@ -32,6 +32,7 @@ export const UsernameSelect = (props: IProps) => {
             autoComplete="off"
             placeholder="Enter a username"
             className="username-select-input"
+            value={username}
             autoFocus
           />
           <button type="submit" className="username-select-submit">

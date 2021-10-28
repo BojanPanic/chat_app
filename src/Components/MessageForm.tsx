@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export const MessageForm = () => {
+interface IProps {
+  sendMessage: (message: string) => void;
+}
+
+export const MessageForm = (props: IProps) => {
   const [message, setMessage] = useState<string>("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -9,6 +13,7 @@ export const MessageForm = () => {
 
   const handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
+    props.sendMessage(message);
   };
 
   return (
@@ -21,6 +26,7 @@ export const MessageForm = () => {
             autoComplete="off"
             placeholder="Message"
             className="message-input"
+            value={message}
             autoFocus
           />
           <button type="submit" className="message-submit">
