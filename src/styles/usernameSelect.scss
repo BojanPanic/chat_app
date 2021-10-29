@@ -1,4 +1,5 @@
 @import "./ui.scss";
+@import "./mixins.scss";
 
 .username-select-wrap {
   width: 100vw;
@@ -21,6 +22,9 @@
 
 .username-select {
   width: 380px;
+  @include small {
+    width: 300px;
+  }
   text-align: center;
 }
 

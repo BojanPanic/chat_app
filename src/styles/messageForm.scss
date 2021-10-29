@@ -1,4 +1,5 @@
 @import "./ui.scss";
+@import "./mixins.scss";
 
 $message-submit-width: 70px;
 $message-submit-margin: 10px;
@@ -32,9 +33,17 @@ $message-submit-margin: 10px;
 }
 
 .message-input {
-  width: calc(90% - 70px - 10px);
+  width: calc(90% - 70px - 15px);
   outline: none;
   border: 2px solid $message-form-input-border;
+
+  @include medium {
+    width: calc(90% - 70px - 25px);
+  }
+
+  @include small {
+    width: calc(90% - 70px - 45px);
+  }
 }
 
 .message-submit {
