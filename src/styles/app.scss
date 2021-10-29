@@ -1,0 +1,17 @@
+@import "./ui.scss";
+
+.app-wrap {
+  width: 100%;
+  height: 100%;
+  background: $message-form-color;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+body,
+h1 {
+  margin: 0;
+  padding: 0;
+}

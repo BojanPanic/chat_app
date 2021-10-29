@@ -1,0 +1,29 @@
+@import "./ui.scss";
+@import "./mixins.scss";
+
+.message-wrap {
+  display: inline-block;
+  padding: 15px;
+  margin: 16px 24px 0 24px;
+  max-width: 500px;
+  border-radius: 5px;
+  border: 1px solid $message-border-color;
+
+  @include medium {
+    max-width: 420px;
+  }
+
+  @include small {
+    max-width: 240px;
+  }
+}
+
+.message-light-text {
+  font-size: 14px;
+  color: $message-light-text-color;
+}
+
+.message-text {
+  padding: 5px 0;
+  word-break: break-all;
+}

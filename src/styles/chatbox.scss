@@ -1,0 +1,31 @@
+@import "./ui.scss";
+@import "./mixins.scss";
+
+.chatbox-wrap {
+  background: url("../assets/body_bg.png");
+  background-size: contain;
+  min-height: 100vh;
+}
+
+.chatbox {
+  max-width: $chatbox-width;
+  margin: 0 auto $message-form-height auto;
+  padding-bottom: 16px;
+
+  @include medium {
+    max-width: 640px;
+  }
+
+  @include small {
+    max-width: 480px;
+  }
+}
+
+.author-message {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.author-message-color {
+  background-color: $message-background-color-author;
+}
